@@ -9,7 +9,7 @@ echo '
 '
 
 echo '  > Compiling source code...'
-g++ main.cpp ./sources/*.cpp -o Main -Wno-deprecated
+g++ main.cpp ./sources/*.cpp -o build/Main -Wno-deprecated
 
 echo $'  > Source code compiled. Compiling samples!\n\n\n\n\n\n\n'
-./Main
+./build/Main
