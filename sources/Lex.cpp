@@ -1,7 +1,6 @@
 #include "../headers/Lex.h"
 
-void Lex::setInput(std::istream &input)
-{
+void Lex::setInput(std::istream &input) {
     std::istreambuf_iterator<char> in(input);
     std::istreambuf_iterator<char> eof;
 
@@ -10,8 +9,7 @@ void Lex::setInput(std::istream &input)
     setPosition(0);
 }
 
-Token *Lex::nextToken() throw(LexicalError)
-{
+Token *Lex::nextToken() throw(LexicalError) {
     if (!hasInput())
         return 0;
 
@@ -22,18 +20,15 @@ Token *Lex::nextToken() throw(LexicalError)
     int endState = -1;
     int end = -1;
 
-    while (hasInput())
-    {
+    while (hasInput()) {
         oldState = state;
         state = nextState(nextChar(), state);
 
         if (state < 0)
             break;
 
-        else
-        {
-            if (tokenForState(state) >= 0)
-            {
+        else {
+            if (tokenForState(state) >= 0) {
                 endState = state;
                 end = position;
             }
@@ -48,22 +43,19 @@ Token *Lex::nextToken() throw(LexicalError)
 
     if (token == 0)
         return nextToken();
-    else
-    {
+    else {
         std::string lexeme = input.substr(start, end - start);
         token = lookupToken(token, lexeme);
         return new Token(token, lexeme, start);
     }
 }
 
-int Lex::nextState(unsigned char c, int state) const
-{
+int Lex::nextState(unsigned char c, int state) const {
     int next = SCANNER_TABLE[state][c];
     return next;
 }
 
-TokenId Lex::tokenForState(int state) const
-{
+TokenId Lex::tokenForState(int state) const {
     int token = -1;
 
     if (state >= 0 && state < STATES_COUNT)
@@ -72,13 +64,11 @@ TokenId Lex::tokenForState(int state) const
     return static_cast<TokenId>(token);
 }
 
-TokenId Lex::lookupToken(TokenId base, const std::string &key)
-{
+TokenId Lex::lookupToken(TokenId base, const std::string &key) {
     int start = SPECIAL_CASES_INDEXES[base];
     int end = SPECIAL_CASES_INDEXES[base + 1] - 1;
 
-    while (start <= end)
-    {
+    while (start <= end) {
         int half = (start + end) / 2;
         const std::string current = SPECIAL_CASES_KEYS[half];
 
@@ -86,7 +76,7 @@ TokenId Lex::lookupToken(TokenId base, const std::string &key)
             return static_cast<TokenId>(SPECIAL_CASES_VALUES[half]);
         else if (current < key)
             start = half + 1;
-        else //(current > key)
+        else  //(current > key)
             end = half - 1;
     }
 

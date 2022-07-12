@@ -3,17 +3,15 @@
 
 #include <string>
 
-class AnalysisError
-{
-public:
-
+class AnalysisError {
+   public:
     AnalysisError(const std::string &msg, int position = -1)
-      : message(msg), position(position) { }
+        : message(msg), position(position) {}
 
     const char *getMessage() const { return message.c_str(); }
     int getPosition() const { return position; }
 
-private:
+   private:
     std::string message;
     int position;
 };

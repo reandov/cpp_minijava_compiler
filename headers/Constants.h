@@ -1,10 +1,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-enum TokenId 
-{
-    EPSILON  = 0,
-    DOLLAR   = 1,
+enum TokenId {
+    EPSILON = 0,
+    DOLLAR = 1,
     t_number = 2,
     t_id = 3,
     t_tk_sum = 4,
@@ -62,12 +61,12 @@ extern const char *SCANNER_ERROR[STATES_COUNT];
 
 const int FIRST_SEMANTIC_ACTION = 58;
 
-const int SHIFT  = 0;
+const int SHIFT = 0;
 const int REDUCE = 1;
 const int ACTION = 2;
 const int ACCEPT = 3;
-const int GO_TO  = 4;
-const int ERROR  = 5;
+const int GO_TO = 4;
+const int ERROR = 5;
 
 extern const int PARSER_TABLE[138][58][2];
 
