@@ -1,0 +1,5 @@
+LETTER:[a-zA-Z]
+DIGIT:[0-9]
+SLASH:["/"]
+COMMENTS:{SLASH}{SLASH}[^\n\r]*
+TRASH: [\ \t\n\r]

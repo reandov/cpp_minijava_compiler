@@ -1,0 +1,72 @@
+// Base RegEx
+number    : {DIGIT}+
+id        : {LETTER} ( {LETTER} | {DIGIT} | "_" )*
+
+// Types
+t_int  : {DIGIT}+
+t_str  : \"({DIGIT}|{LETTER})*\"
+t_bool : (true| false) 
+
+// Operators
+tk_sum : "+"
+tk_sub : "-"
+tk_prod: "*"
+tk_div : "/"
+
+// Delimiters
+tk_ocb : "{"
+tk_ccb : "}"
+tk_op  : "("
+tk_cp  : ")"
+tk_ob  : "["
+tk_cb  : "]"
+
+// Other Tokens
+tk_dot : "."
+tk_atr : "="
+tk_end : ";"
+tk_cma : ","
+
+// Reserved Keywords
+tk_class   = id : "class"
+tk_public  = id : "public"
+tk_static  = id : "static"
+tk_void    = id : "void"
+tk_main    = id : "main"
+tk_if      = id : "if"
+tk_else    = id : "else"
+tk_for     = id : "for"
+tk_while   = id : "while"
+tk_new     = id : "new"
+tk_this    = id : "this"
+tk_length  = id : "length"
+tk_return  = id : "return"
+tk_extends = id : "extends"
+tk_sys     = id : "System"
+tk_out     = id : "out"
+tk_pri     = id : "println"
+
+//Reserved Types
+tk_char    = id : "char" 
+tk_string  = id : "String" 
+tk_int     = id : "int" 
+tk_float   = id : "float"
+tk_double  = id : "double"
+tk_boolean = id : "boolean"
+tk_true    = id : "true"
+tk_false   = id : "false"
+
+// Boolean Tokens
+tk_gt: ">"
+tk_lt: "<"
+tk_gte: ">="
+tk_lte: "<="
+tk_eq: "=="
+tk_or: "||"
+tk_and: "&&"
+tk_dif: "!="
+tk_neg: "!"
+
+// Trash
+:{TRASH}
+:!{COMMENTS}

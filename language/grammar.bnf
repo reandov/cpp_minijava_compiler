@@ -1,0 +1,40 @@
+<Goal>	            ::=	<MainClass> <StarClassDeclaration>;
+<MainClass>	        ::=	tk_class id tk_ocb tk_public tk_static tk_void tk_main tk_op tk_string tk_ob tk_cb id tk_cp tk_ocb <Statement> tk_ccb tk_ccb;
+<ClassDeclaration>	::=	tk_class id <OptIdentifier> tk_ocb <StarVarDeclaration> <StarMethodDeclaration> tk_ccb;
+<MethodDeclaration>	::=	tk_public <Type> id tk_op <OptParams> tk_cp tk_ocb <StarVarDeclaration> <StarStatement> tk_return <Expression> tk_end tk_ccb;
+<Type>	            ::=	tk_int tk_ob tk_cb
+|	tk_boolean
+|	tk_int
+|	id;
+
+<Statement>	        ::=	tk_ocb <StarStatement> tk_ccb
+|	tk_if tk_op <Expression> tk_cp <Statement> tk_else <Statement>
+|	tk_while tk_op <Expression> tk_cp <Statement>
+|	tk_sys tk_dot tk_out tk_dot tk_pri tk_op <Expression> tk_cp tk_end
+|	id tk_atr <Expression> tk_end
+|	id tk_ob <Expression> tk_cb tk_atr <Expression> tk_end;
+
+<Expression>	      ::=	<Expression> <ChooseOperator> <Expression>
+|	<Expression> tk_ob <Expression> tk_cb
+|	<Expression> tk_dot tk_length
+|	<Expression> tk_dot id tk_op <OptExpression> tk_cp
+|	number
+|	tk_true
+|	tk_false
+|	id
+|	tk_this
+|	tk_new tk_int tk_ob <Expression> tk_cb
+|	tk_new id tk_op tk_cp
+|	tk_neg <Expression>
+|	tk_op <Expression> tk_cp;
+
+<OptIdentifier> ::= tk_extends id | î;
+<StarVarDeclaration> ::= <StarVarDeclaration> <Type> id tk_end | î;
+<StarParams> ::= tk_cma <Type> id <StarParams> | î;
+<OptParams> ::= <Type> id <StarParams> | î;
+<StarStatement> ::= <Statement> <StarStatement> | î;
+<ChooseOperator> ::= tk_and | tk_lt | tk_sum | tk_sub | tk_prod;
+<StarExpression> ::= tk_cma <Expression> <StarExpression> | î;
+<OptExpression> ::= <Expression> <StarExpression> | î;
+<StarMethodDeclaration> ::= <MethodDeclaration> <StarMethodDeclaration> | î;
+<StarClassDeclaration> ::= <ClassDeclaration> <StarClassDeclaration> | î;
